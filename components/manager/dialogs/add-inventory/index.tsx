@@ -199,9 +199,9 @@ const AddInventory = ({ isOpen, onClose, status, page }: Props) => {
                                 <SelectValue placeholder="Select Categroy" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="Men">Men</SelectItem>
-                                <SelectItem value="Women">Women</SelectItem>
-                                <SelectItem value="Unisex">Unisex</SelectItem>
+                                <SelectItem value="Clothes">Clothes</SelectItem>
+                                <SelectItem value="Shoes">Shoes</SelectItem>
+                                <SelectItem value="Hats">Hats</SelectItem>
                               </SelectContent>
                             </Select>
                           </FormControl>
