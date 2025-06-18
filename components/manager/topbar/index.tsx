@@ -22,7 +22,7 @@ const Topbar = () => {
   return (
     <header
       className={
-        "md:bg-[white] md:text-black bg-[#02071d] text-white md:py-3 py-4 px-5 flex items-center justify-between"
+        "md:bg-[white] md:text-black bg-[#02071d] text-white md:py-3 py-4 px-5 flex items-center justify-between sticky top-0 z-50"
       }
     >
       <h3 className={"h3"}>{computePathname()}</h3>

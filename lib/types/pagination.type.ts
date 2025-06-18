@@ -8,4 +8,6 @@ export type FilterProps = {
   refetch?: () => void;
   searchText?: string;
   setSearchText?: (text: string) => void;
+  category?: string;
+  setCategory?: (category: string) => void;
 };

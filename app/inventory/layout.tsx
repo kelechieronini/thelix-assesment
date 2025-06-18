@@ -13,7 +13,7 @@ const ManagerLayout = async ({ children }: Props) => {
       <Sidebar />
       <VStack className={"grow bg-neutral-300"}>
         <Topbar />
-        <div className="min-w-full h-[90vh] overflow-y-auto no-scrollbar">
+        <div className="min-w-full md:h-[90vh] overflow-y-auto no-scrollbar">
           {children}
         </div>
       </VStack>

@@ -15,8 +15,7 @@ import AddProductImage from "@/components/manager/add-product-image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ProductImageFile } from "@/lib/types/product-image.type";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { _getCategories } from "@/lib/api/category.api";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { QueryKeys } from "@/lib/constants/keys";
 import Spinner from "@/components/ui/spinner";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -39,33 +38,25 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  category: string | undefined;
+  page: number;
 };
 
-const AddInventory = ({ isOpen, onClose }: Props) => {
+const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
   const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<ProductImageFile[]>([]);
 
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const form = useForm<AddProductSchema>({
     resolver: classValidatorResolver(AddProductSchema),
     defaultValues: {
       name: "",
       description: "",
-      category_id: "",
-      tags: "",
-      size: "",
-      waist: 0,
-      weight: 0,
-      length: 0,
+      category: "",
       price: 0,
-      quantity_in_stock: 0,
     },
-  });
-
-  const { isLoading, data } = useQuery({
-    queryKey: [QueryKeys.GET_PRODUCT_CATEGORIES],
-    queryFn: _getCategories,
   });
 
   const { mutate, isPending } = useMutation({
@@ -74,6 +65,9 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
       form.reset();
       setSelectedFiles([]);
       toast({ title: "Product added." });
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.GET_PRODUCTS, page, category],
+      });
     },
     onError: (err: any) => {
       if (err?.response?.data) {
@@ -88,30 +82,12 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
     setErrorResponse(null);
 
     if (selectedFiles.length === 0) {
-      setErrorResponse("Please select product images.");
+      setErrorResponse("Please select product image.");
       return;
     }
 
     const payload = {
       data,
-      status: "active",
-      selectedFiles,
-    };
-
-    mutate(payload);
-  };
-
-  const drafts: SubmitHandler<AddProductSchema> = async (data) => {
-    setErrorResponse(null);
-
-    if (selectedFiles.length === 0) {
-      setErrorResponse("Please select product images.");
-      return;
-    }
-
-    const payload = {
-      data,
-      status: "draft",
       selectedFiles,
     };
 
@@ -123,15 +99,15 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           aria-describedby="reset-success"
-          className="sm:max-w-[946px] sm:max-h-[80vh] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
+          className="md:max-w-[946px] md:max-h-[80vh] max-h-[60vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
         >
-          <section className={" w-full"}>
+          <section className={"w-full"}>
             <Form {...form}>
-              <form className="space-y-6 bg-white px-8 py-10">
+              <form className="space-y-6 bg-white md:px-8 md:py-10">
                 <h4 className="text-muted text-sm">Add New Product</h4>
 
-                <div className="flex items-stretch justify-stretch space-x-9">
-                  <VStack className="space-y-6 w-[60%]">
+                <div className="flex items-start md:flex-row flex-col justify-stretch gap-9">
+                  <VStack className="space-y-6 md:w-[60%] order-2 md:order-1">
                     <VStack className="space-y-1.5">
                       <h3 className="text-primary font-semibold text-2xl">
                         General Information
@@ -148,8 +124,7 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm">
-                            Product Name{" "}
-                            <span className="text-destructive">*</span>
+                            Name <span className="text-destructive">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -165,57 +140,19 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
 
                     <FormField
                       control={form.control}
-                      name="category_id"
+                      name="price"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm">
-                            Category <span className="text-destructive">*</span>
+                            Price <span className="text-destructive">*</span>
                           </FormLabel>
                           <FormControl>
-                            <Select
-                              value={field.value}
-                              onValueChange={field.onChange}
-                              required
-                            >
-                              <SelectTrigger className="w-full rounded-none h-12 capitalize">
-                                <SelectValue
-                                  placeholder="Select category"
-                                  className="w-full placeholder:!text-muted placeholder:!font-light !rounded-none"
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {isLoading && (
-                                  <div className="py-10 flex justify-center">
-                                    <Spinner size={35} />
-                                  </div>
-                                )}
-
-                                {!isLoading &&
-                                  data &&
-                                  data.data &&
-                                  data.data.data.length > 0 &&
-                                  data.data.data.map((d, index) => (
-                                    <SelectItem
-                                      key={index}
-                                      value={d.id}
-                                      className="capitalize"
-                                    >
-                                      {d.name}
-                                    </SelectItem>
-                                  ))}
-
-                                {!isLoading &&
-                                  data &&
-                                  data.data &&
-                                  data.data.data.length === 0 && (
-                                    <div className="py-10 flex justify-center">
-                                      <p className="text-center font-medium">
-                                        No categories.
-                                      </p>
-                                    </div>
-                                  )}
-                              </SelectContent>
-                            </Select>
+                            <Input
+                              placeholder="e.g Reclaimed vintage loose men jean"
+                              className="placeholder:text-muted placeholder:font-light rounded-none"
+                              type="number"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -246,19 +183,27 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
 
                     <FormField
                       control={form.control}
-                      name="tags"
+                      name="category"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-sm">
-                            Product Tags{" "}
-                            <span className="text-destructive">*</span>
+                            Category <span className="text-destructive">*</span>
                           </FormLabel>
                           <FormControl>
-                            <Textarea
-                              placeholder="e,g Under 5k, Shirt, Men"
-                              className="placeholder:text-muted placeholder:font-light rounded-none"
-                              {...field}
-                            />
+                            <Select
+                              value={field.value}
+                              onValueChange={field.onChange}
+                              required
+                            >
+                              <SelectTrigger className="w-full  grow h-12">
+                                <SelectValue placeholder="Select Categroy" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Clothes">Clothes</SelectItem>
+                                <SelectItem value="Shoes">Shoes</SelectItem>
+                                <SelectItem value="Hats">Hats</SelectItem>
+                              </SelectContent>
+                            </Select>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -282,24 +227,16 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
                   </Alert>
                 )}
 
-                <HStack className="justify-center space-x-5">
+                <div className="w-full flex justify-center items-center">
                   <Button
-                    className="bg-inherit border border-primary text-primary hover:text-white w-[150px]"
-                    onClick={form.handleSubmit(drafts)}
-                    isLoading={isPending}
-                    disabled={isPending}
-                  >
-                    Save as draft
-                  </Button>
-                  <Button
-                    className="rounded-none text-white bg-[#1D41E0] hover:bg-[#1D41E0] w-[150px]"
+                    className=" text-white bg-[#1D41E0] hover:bg-[#2b44bf] md:w-[400px] w-[200px]"
                     onClick={form.handleSubmit(publish)}
                     isLoading={isPending}
                     disabled={isPending}
                   >
                     Publish
                   </Button>
-                </HStack>
+                </div>
               </form>
             </Form>
           </section>
