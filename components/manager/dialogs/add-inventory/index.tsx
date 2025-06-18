@@ -38,11 +38,11 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  status: string | undefined;
+  category: string | undefined;
   page: number;
 };
 
-const AddInventory = ({ isOpen, onClose, status, page }: Props) => {
+const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
   const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<ProductImageFile[]>([]);
 
@@ -66,7 +66,7 @@ const AddInventory = ({ isOpen, onClose, status, page }: Props) => {
       setSelectedFiles([]);
       toast({ title: "Product added." });
       queryClient.invalidateQueries({
-        queryKey: [QueryKeys.GET_PRODUCTS, page, status],
+        queryKey: [QueryKeys.GET_PRODUCTS, page, category],
       });
     },
     onError: (err: any) => {

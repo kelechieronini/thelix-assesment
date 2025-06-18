@@ -114,7 +114,7 @@ const InventoryFilters = ({
         isOpen={isOpen}
         onClose={onClose}
         page={page}
-        status={status}
+        category={category}
       />
     </HStack>
   );
