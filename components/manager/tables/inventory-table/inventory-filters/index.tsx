@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/select";
 import Pagination from "@/components/manager/pagination";
 import { FilterProps } from "@/lib/types/pagination.type";
-import Link from "next/link";
 import { useDisclosure } from "@/lib/hooks/use-disclosure";
 import AddInventory from "@/components/manager/dialogs/add-inventory";
 
-const InventoryTableFilters = ({
+const InventoryFilters = ({
   page,
   setPage,
   itemsPerPage,
@@ -26,6 +25,8 @@ const InventoryTableFilters = ({
   searchText,
   setSearchText,
   refetch,
+  category,
+  setCategory,
 }: FilterProps) => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -74,14 +75,17 @@ const InventoryTableFilters = ({
             <RefreshCw size={22} />
           </Button>
 
-          <Select>
+          <Select
+            value={category}
+            onValueChange={(value) => setCategory && setCategory(value)}
+          >
             <SelectTrigger className="w-[180px] text-black grow h-12">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              <SelectItem value="Men">Men</SelectItem>
+              <SelectItem value="Women">Women</SelectItem>
+              <SelectItem value="Unisex">Unisex</SelectItem>
             </SelectContent>
           </Select>
         </HStack>
@@ -102,13 +106,18 @@ const InventoryTableFilters = ({
           className="bg-inherit border border-[#1D41E0] text-[#1D41E0] hover:bg-[#1D41E0] hover:text-white order-1 md:order-2"
           onClick={onOpen}
         >
-          Add Productss
+          Add Product
         </Button>
       </HStack>
 
-      <AddInventory isOpen={isOpen} onClose={onClose} />
+      <AddInventory
+        isOpen={isOpen}
+        onClose={onClose}
+        page={page}
+        status={status}
+      />
     </HStack>
   );
 };
 
-export default InventoryTableFilters;
+export default InventoryFilters;

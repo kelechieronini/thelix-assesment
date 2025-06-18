@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useDisclosure } from "@/lib/hooks/use-disclosure";
 import { useRouter } from "next/navigation";
-import StatusBadge from "@/components/manager/status-badge";
 import { Product } from "@/lib/types/product.type";
 import ChangeProductStatus from "@/components/manager/dialogs/change-product-status";
 import { useState } from "react";
@@ -31,9 +30,8 @@ const InventoryDataTable = ({ products, page }: Props) => {
   const headers = [
     "Product ID",
     "Product Name",
-    "Category",
-    "Stock Level",
     "Price",
+    "Description",
     "Status",
   ];
 
@@ -77,23 +75,19 @@ const InventoryDataTable = ({ products, page }: Props) => {
               </TableCell>
 
               <TableCell className="uppercase text-sm text-center">
-                {product.id.split("-")[0].toUpperCase()}
+                {product.id}
               </TableCell>
               <TableCell className="text-sm text-center capitalize">
-                {product.name.slice(0, 40)}
-                {product.length > 40 && "..."}
+                {product.name}
               </TableCell>
               <TableCell className="text-sm text-center capitalize">
-                {product.category.name}
+                {product.price}
               </TableCell>
               <TableCell className="text-sm text-center">
-                {Number(product.quantity_in_stock).toLocaleString()}
+                {product.description}
               </TableCell>
               <TableCell className="text-sm text-center">
-                &#x20A6;{Number(product.price).toLocaleString()}
-              </TableCell>
-              <TableCell className="text-sm text-center">
-                <StatusBadge status={product.status} />
+                {product.category}
               </TableCell>
 
               <TableCell className="text-sm text-center">
@@ -107,19 +101,19 @@ const InventoryDataTable = ({ products, page }: Props) => {
                   <DropdownMenuContent>
                     <DropdownMenuItem
                       className="text-sm font-light border-b border-[#F6F6F6] rounded-sm"
-                      onClick={() => push(`/manager/inventory/${product.id}`)}
+                      onClick={() => push(`/inventory/${product.id}`)}
                     >
                       View Product
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       className="text-sm font-light border-b border-[#F6F6F6] rounded-sm"
                       onClick={() =>
-                        push(`/manager/inventory/edit?product=${product.id}`)
+                        push(`/inventory/edit?product=${product.id}`)
                       }
                     >
                       Edit Product
                     </DropdownMenuItem>
-                    {product.status === "active" && (
+                    {product.category === "active" && (
                       <DropdownMenuItem
                         className="text-sm font-light border-b border-[#F6F6F6] rounded-sm"
                         onClick={() => handleRowClick("inactive", product.id)}
@@ -127,7 +121,7 @@ const InventoryDataTable = ({ products, page }: Props) => {
                         Make Inactive
                       </DropdownMenuItem>
                     )}
-                    {product.status === "inactive" && (
+                    {product.category === "inactive" && (
                       <DropdownMenuItem
                         className="text-sm font-light border-b border-[#F6F6F6] rounded-sm"
                         onClick={() => handleRowClick("active", product.id)}

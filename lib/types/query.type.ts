@@ -1,5 +1,4 @@
 export type ProductQuery = {
-  status?: string;
-  search?: string;
+  name?: string;
   category?: string;
 };
