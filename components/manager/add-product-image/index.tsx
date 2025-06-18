@@ -66,7 +66,7 @@ const AddProductImage = ({ selectedFiles, setSelectedFiles }: Props) => {
 
   return (
     <div
-      className="border border-muted w-[40%] flex flex-col justify-between p-5"
+      className="border border-muted md:w-[40%] flex flex-col justify-between p-5 rounded-md"
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -108,10 +108,10 @@ const AddProductImage = ({ selectedFiles, setSelectedFiles }: Props) => {
           <div className="flex items-center space-x-0.5">
             <Button
               type="button"
-              className="rounded-none text-white bg-[#1D41E0] hover:bg-[#1D41E0]"
+              className="text-white bg-[#1D41E0] hover:bg-[#1D41E0]"
               onClick={handleClick}
             >
-              Upload Images
+              Upload Image
             </Button>
             <Input
               type="file"
@@ -121,13 +121,6 @@ const AddProductImage = ({ selectedFiles, setSelectedFiles }: Props) => {
               ref={fileInput}
               onChange={handleFileChange}
             />
-            <Button
-              type="button"
-              className="rounded-none text-white bg-[#1D41E0] hover:bg-[#1D41E0]"
-              onClick={handleClick}
-            >
-              <ChevronDown />
-            </Button>
           </div>
           <p className="text-sm font-light text-muted">or drag and drop</p>
         </VStack>

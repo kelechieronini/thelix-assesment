@@ -33,7 +33,7 @@ const TableTabs = ({ tabs, state, setState }: Props) => {
   };
 
   return (
-    <div className="flex w-full items-center space-x-5 border-b border-muted">
+    <div className="flex w-full items-center md:space-x-5 border-b border-muted">
       {tabs.map((tab, index) => (
         <Button
           className={`bg-inherit h-11 text-sm font-light capitalize ${state === tab ? stateColor[state].className : ""}`}

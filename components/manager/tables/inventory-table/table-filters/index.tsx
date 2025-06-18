@@ -39,8 +39,10 @@ const InventoryTableFilters = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <HStack className={"items-center justify-between"}>
-      <HStack className={"items-center space-x-5"}>
+    <HStack
+      className={"items-center justify-between md:flex-row flex-col gap-3"}
+    >
+      <HStack className={"items-center md:gap-5 md:flex-row flex-col gap-3"}>
         <form
           className="relative w-full flex items-center"
           onSubmit={handleSubmit}
@@ -50,7 +52,7 @@ const InventoryTableFilters = ({
             size={19}
           />
           <Input
-            className="min-w-[25rem] pl-10 pr-10 placeholder:font-light"
+            className="md:min-w-[25rem] min-w-[20rem] pl-10 pr-10 placeholder:font-light"
             placeholder="Search"
             type="text"
             value={searchText}
@@ -62,43 +64,46 @@ const InventoryTableFilters = ({
           />
         </form>
 
-        <Button
-          size={"icon"}
-          variant={"link"}
-          onClick={() => refetch && refetch()}
-        >
-          <RefreshCw size={22} />
-        </Button>
+        <HStack className="ms-0 gap-2 mt-0 w-full justify-between items-center">
+          <Button
+            size={"icon"}
+            variant={"link"}
+            onClick={() => refetch && refetch()}
+            className="order-2 md:order-1"
+          >
+            <RefreshCw size={22} />
+          </Button>
 
-        <Select>
-          <SelectTrigger className="w-[180px] text-black border-black">
-            <SelectValue placeholder="Sort by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
-          </SelectContent>
-        </Select>
+          <Select>
+            <SelectTrigger className="w-[180px] text-black grow h-12">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="light">Light</SelectItem>
+              <SelectItem value="dark">Dark</SelectItem>
+              <SelectItem value="system">System</SelectItem>
+            </SelectContent>
+          </Select>
+        </HStack>
       </HStack>
 
-      <HStack className="space-x-5">
-        <Pagination
-          page={page}
-          setPage={setPage}
-          itemsPerPage={itemsPerPage}
-          totalItems={totalItems}
-          totalPages={totalPages}
-          isLoading={isLoading}
-        />
-        {/* <Link href="/inventory/add" passHref> */}
+      <HStack className="space-x-5 md:flex-row flex-col">
+        <div className="order-2 md:order-1">
+          <Pagination
+            page={page}
+            setPage={setPage}
+            itemsPerPage={itemsPerPage}
+            totalItems={totalItems}
+            totalPages={totalPages}
+            isLoading={isLoading}
+          />
+        </div>
         <Button
-          className="bg-inherit border border-[#1D41E0] text-[#1D41E0] hover:bg-[#1D41E0] hover:text-white"
+          className="bg-inherit border border-[#1D41E0] text-[#1D41E0] hover:bg-[#1D41E0] hover:text-white order-1 md:order-2"
           onClick={onOpen}
         >
           Add Productss
         </Button>
-        {/* </Link> */}
       </HStack>
 
       <AddInventory isOpen={isOpen} onClose={onClose} />

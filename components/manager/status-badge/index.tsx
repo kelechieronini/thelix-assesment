@@ -1,5 +1,5 @@
-import { Status } from "@/lib/types/status.type";
 import { Badge } from "@/components/ui/badge";
+import { Status } from "@/lib/types/status.type";
 
 type Props = {
   status: Status;

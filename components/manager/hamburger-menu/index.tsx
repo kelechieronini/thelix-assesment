@@ -26,9 +26,7 @@ const HamburgerMenu = ({ isOpen, onClose }: Props) => {
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent className=" w-full overflow-y-auto">
-        <VStack
-          className={"space-y-5 bg-primary text-white ps-4 pe-8 py-7 h-full"}
-        >
+        <VStack className={"space-y-5 bg-primary text-white p-7 h-full"}>
           <Image
             src={
               "https://thelixholdings.com/wp-content/uploads/2024/09/tmh_white-1-e1727334009858-150x55.png"

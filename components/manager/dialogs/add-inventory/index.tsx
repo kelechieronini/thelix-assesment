@@ -123,15 +123,15 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           aria-describedby="reset-success"
-          className="sm:max-w-[946px] sm:max-h-[80vh] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
+          className="md:max-w-[946px] md:max-h-[80vh] max-h-[60vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
         >
-          <section className={" w-full"}>
+          <section className={"w-full"}>
             <Form {...form}>
-              <form className="space-y-6 bg-white px-8 py-10">
+              <form className="space-y-6 bg-white md:px-8 md:py-10">
                 <h4 className="text-muted text-sm">Add New Product</h4>
 
-                <div className="flex items-stretch justify-stretch space-x-9">
-                  <VStack className="space-y-6 w-[60%]">
+                <div className="flex items-stretch md:flex-row flex-col justify-stretch gap-9">
+                  <VStack className="space-y-6 md:w-[60%] order-2 md:order-1">
                     <VStack className="space-y-1.5">
                       <h3 className="text-primary font-semibold text-2xl">
                         General Information
@@ -292,7 +292,7 @@ const AddInventory = ({ isOpen, onClose }: Props) => {
                     Save as draft
                   </Button>
                   <Button
-                    className="rounded-none text-white bg-[#1D41E0] hover:bg-[#1D41E0] w-[150px]"
+                    className=" text-white bg-[#1D41E0] hover:bg-[#1D41E0] w-[150px]"
                     onClick={form.handleSubmit(publish)}
                     isLoading={isPending}
                     disabled={isPending}

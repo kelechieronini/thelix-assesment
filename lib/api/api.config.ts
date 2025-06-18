@@ -1,4 +1,3 @@
-import { getAccessToken } from "@/lib/utils";
 import axios from "axios";
 
 const prodBaseUrl = "https://api.attirealley.ng/api/v1";
@@ -19,7 +18,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
+    config.headers["Authorization"] = `Bearer `;
     return config;
   },
   (error) => {
@@ -42,7 +41,7 @@ export const uploadApi = axios.create({
 
 uploadApi.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `Bearer ${getAccessToken()}`;
+    config.headers["Authorization"] = `Bearer `;
     return config;
   },
   (error) => {
