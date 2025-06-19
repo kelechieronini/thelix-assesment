@@ -65,7 +65,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
       setSelectedFiles([]);
       toast({ title: "Product added." });
       queryClient.invalidateQueries({
-        queryKey: [QueryKeys.GET_PRODUCTS, page, category],
+        queryKey: [QueryKeys.GET_PRODUCTS],
       });
       onClose();
     },
@@ -148,7 +148,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
                           </FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="e.g Reclaimed vintage loose men jean"
+                              placeholder="1000"
                               className="placeholder:text-muted placeholder:font-light rounded-none"
                               type="number"
                               {...field}

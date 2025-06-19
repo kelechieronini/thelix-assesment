@@ -3,10 +3,11 @@ import InventoryStatsCard from "@/components/manager/inventory-stats-card";
 import { useQuery } from "@tanstack/react-query";
 import { _getProducts } from "@/lib/api/product.api";
 import React from "react";
+import { QueryKeys } from "@/lib/constants/keys";
 
 const InventoryStats = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["product-stats"],
+    queryKey: [QueryKeys.GET_PRODUCTS],
     queryFn: () => _getProducts(1, 1000, {}),
   });
 

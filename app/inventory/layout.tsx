@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { HStack, VStack } from "@/components/ui/stack";
-import Sidebar from "@/components/manager/sidebar";
-import Topbar from "@/components/manager/topbar";
+import Sidebar from "@/components/core/sidebar";
+import Topbar from "@/components/core/topbar";
 
 type Props = {
   children: ReactNode;

@@ -114,36 +114,3 @@ body::-webkit-scrollbar {
   border-radius: 20px;
   width: 100%;
 }
-
-/* Header Custom Classes */
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-20px);
-    -ms-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-.sticky-header {
-  position: sticky;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 99;
-  background: #fff;
-  -webkit-animation: 1000ms ease-in-out 0s normal none 1 running fadeInDown;
-  animation: 1000ms ease-in-out 0s normal none 1 running fadeInDown;
-  -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
-  box-shadow: 0 10px 30px rgba(25, 25, 25, 0.3);
-  border-radius: 0;
-}
-
-/* End of header custom classes */

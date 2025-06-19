@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Pagination from "@/components/manager/pagination";
+import Pagination from "@/components/core/pagination";
 import { FilterProps } from "@/lib/types/pagination.type";
 import { useDisclosure } from "@/lib/hooks/use-disclosure";
 import AddInventory from "@/components/manager/dialogs/add-inventory";
