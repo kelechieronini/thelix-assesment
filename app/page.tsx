@@ -9,7 +9,7 @@ const App = () => {
         THELIX ASSESMENT
       </p>
 
-      <Link href="/inventory" passHref>
+      <Link href="/dashboard/inventory" passHref>
         <Button className="bg-white text-[#02071d]">View Dashboard</Button>
       </Link>
     </div>
