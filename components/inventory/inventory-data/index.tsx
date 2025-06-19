@@ -64,7 +64,8 @@ const InventoryData = () => {
 
         {!loading && products.length > 0 && (
           <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
-            {products.map((product) => (
+            {/* Reverse the products array to display the latest products first because the mock api is not handling it well*/}
+            {[...products].reverse().map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
