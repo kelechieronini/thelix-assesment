@@ -99,7 +99,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           aria-describedby="reset-success"
-          className="md:max-w-[946px] md:max-h-[80vh] max-h-[95vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
+          className="md:max-w-[946px] md:max-h-[80vh] max-h-[90vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
         >
           <section className={"w-full"}>
             <Form {...form}>

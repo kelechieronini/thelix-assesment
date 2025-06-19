@@ -47,7 +47,6 @@ const Topbar = () => {
             <span>Kelechi Eronini</span>
             <span className={"font-light text-xs"}>ID: 12345</span>
           </VStack>
-          <ChevronDown />
         </HStack>
       </HStack>
       <div className="md:hidden">

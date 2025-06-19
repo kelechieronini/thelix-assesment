@@ -26,15 +26,22 @@ const HamburgerMenu = ({ isOpen, onClose }: Props) => {
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent className=" w-full overflow-y-auto">
-        <VStack className={"space-y-5 bg-primary text-white p-7 h-full"}>
-          <Image
-            src={
-              "https://thelixholdings.com/wp-content/uploads/2024/09/tmh_white-1-e1727334009858-150x55.png"
-            }
-            width={80}
-            height={50}
-            alt={"thelix holdings"}
-          />
+        <VStack className={"space-y-5 bg-primary text-white p-7 pt-10 h-full"}>
+          <HStack className="justify-between items-center">
+            <Image
+              src={
+                "https://thelixholdings.com/wp-content/uploads/2024/09/tmh_white-1-e1727334009858-150x55.png"
+              }
+              width={80}
+              height={50}
+              alt={"thelix holdings"}
+            />
+
+            <VStack className="text-xs text-muted text-end">
+              <span>Kelechi Eronini</span>
+              <span className={"font-light text-xs"}>ID: 12345</span>
+            </VStack>
+          </HStack>
 
           <VStack className={"mt-5 grow justify-between"}>
             <VStack className={"space-y-3"}>
