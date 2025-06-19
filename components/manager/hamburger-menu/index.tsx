@@ -7,7 +7,7 @@ import { HStack, VStack } from "@/components/ui/stack";
 import Image from "next/image";
 import { LogOut, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { links } from "@/lib/constants/manager-links";
+import { links } from "@/lib/constants/dashboard-links";
 
 type Props = {
   isOpen: boolean;
@@ -52,28 +52,16 @@ const HamburgerMenu = ({ isOpen, onClose }: Props) => {
               ))}
             </VStack>
 
-            <VStack className={"space-y-2"}>
-              <Link
-                href={"/settings"}
-                className={`hover:bg-white hover:text-blue-600 transition-all ease-in-out duration-300 text-[13px] rounded-md ${pathname === "/settings" ? "bg-white text-blue-600 font-bold" : "bg-none text-inherit font-normal"}`}
-              >
-                <HStack className={"space-x-2 items-center pl-3 py-3 pr-12"}>
-                  <Settings size={13} />
-                  <span>Settings</span>
-                </HStack>
-              </Link>
-
-              <Button
-                variant="link"
-                className={`hover:bg-white hover:text-red-500 hover:no-underline transition-all ease-in-out duration-300 bg-none text-inherit px-0 justify-start text-[13px] font-normal`}
-                onClick={logout}
-              >
-                <HStack className={"space-x-2 items-center pl-3 py-3 pr-12"}>
-                  <LogOut size={13} />
-                  <span>Logout</span>
-                </HStack>
-              </Button>
-            </VStack>
+            <Button
+              variant="link"
+              className={`hover:bg-white hover:text-red-500 hover:no-underline transition-all ease-in-out duration-300 bg-none text-inherit px-0 justify-start text-[13px] font-normal`}
+              onClick={logout}
+            >
+              <HStack className={"space-x-2 items-center pl-3 py-3 pr-12"}>
+                <LogOut size={13} />
+                <span>Logout</span>
+              </HStack>
+            </Button>
           </VStack>
         </VStack>
       </SheetContent>

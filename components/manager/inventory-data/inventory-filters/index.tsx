@@ -83,6 +83,7 @@ const InventoryFilters = ({
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="All">All</SelectItem>
               <SelectItem value="Clothes">Clothes</SelectItem>
               <SelectItem value="Shoes">Shoes</SelectItem>
               <SelectItem value="Hats">Hats</SelectItem>

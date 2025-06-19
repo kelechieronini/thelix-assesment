@@ -15,9 +15,8 @@ import AddProductImage from "@/components/manager/add-product-image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ProductImageFile } from "@/lib/types/product-image.type";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { QueryKeys } from "@/lib/constants/keys";
-import Spinner from "@/components/ui/spinner";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { AddProductSchema } from "@/lib/schema/add-product.schema";
@@ -68,6 +67,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
       queryClient.invalidateQueries({
         queryKey: [QueryKeys.GET_PRODUCTS, page, category],
       });
+      onClose();
     },
     onError: (err: any) => {
       if (err?.response?.data) {
@@ -99,7 +99,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           aria-describedby="reset-success"
-          className="md:max-w-[946px] md:max-h-[80vh] max-h-[60vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
+          className="md:max-w-[946px] md:max-h-[80vh] max-h-[90vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
         >
           <section className={"w-full"}>
             <Form {...form}>
@@ -107,7 +107,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
                 <h4 className="text-muted text-sm">Add New Product</h4>
 
                 <div className="flex items-start md:flex-row flex-col justify-stretch gap-9">
-                  <VStack className="space-y-6 md:w-[60%] order-2 md:order-1">
+                  <VStack className="space-y-6 md:w-[60%] w-full order-2 md:order-1">
                     <VStack className="space-y-1.5">
                       <h3 className="text-primary font-semibold text-2xl">
                         General Information
@@ -128,7 +128,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
                           </FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="e.g Reclaimed vintage loose men jean"
+                              placeholder="Product Name"
                               className="placeholder:text-muted placeholder:font-light rounded-none"
                               {...field}
                             />
