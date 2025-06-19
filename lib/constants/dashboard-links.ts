@@ -5,7 +5,7 @@ export const links = [
   {
     id: nanoid(),
     title: "Inventory",
-    href: "/inventory",
+    href: "/dashboard/inventory",
     icon: Layers,
   },
 ];

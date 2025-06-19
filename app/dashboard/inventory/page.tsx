@@ -4,7 +4,7 @@ import React from "react";
 
 const Inventory = () => {
   return (
-    <section className={"p-6 flex flex-col space-y-6"}>
+    <section className={"md:p-6 p-4 flex flex-col space-y-6"}>
       <InventoryStats />
       <InventoryData />
     </section>
