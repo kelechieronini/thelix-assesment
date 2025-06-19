@@ -18,9 +18,9 @@ const InventoryData = () => {
   const products = useProductStore((state) => state.products);
 
   const { isLoading, data, refetch, isRefetching } = useQuery({
-    queryKey: [QueryKeys.GET_PRODUCTS, page, category, searchText],
+    queryKey: [QueryKeys.GET_PRODUCTS, page, category],
     queryFn: () =>
-      _getProducts(page, 10, {
+      _getProducts(page, 4, {
         category: category === "All" ? "" : category,
         name: searchText,
       }),
@@ -37,8 +37,6 @@ const InventoryData = () => {
     }
   }, [data, setProducts]);
 
-  console.log(products);
-
   const loading = isLoading || isRefetching;
 
   return (
@@ -46,9 +44,9 @@ const InventoryData = () => {
       <InventoryFilters
         page={page}
         setPage={setPage}
-        itemsPerPage={10}
-        totalItems={30}
-        totalPages={3}
+        itemsPerPage={4}
+        totalItems={products.length}
+        totalPages={5}
         isLoading={loading}
         searchText={searchText}
         setSearchText={setSearchText}
@@ -77,7 +75,7 @@ const InventoryData = () => {
             <h3 className="capitalize font-medium text-2xl text-center">
               No Products
             </h3>
-            <p className="text-muted font-light text-center text-sm">
+            <p className="text-muted font-light text-center md:text-sm text-xs">
               You currently have no product found. Add a <br /> product and
               manage inventory
             </p>

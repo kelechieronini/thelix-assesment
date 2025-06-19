@@ -54,7 +54,7 @@ const InventoryFilters = ({
           />
           <Input
             className="md:min-w-[25rem] min-w-[20rem] pl-10 pr-10 placeholder:font-light"
-            placeholder="Search"
+            placeholder="Search product name"
             type="text"
             value={searchText}
             onChange={handleChange}
@@ -92,7 +92,8 @@ const InventoryFilters = ({
         </HStack>
       </HStack>
 
-      <HStack className="space-x-5 md:flex-row flex-col">
+      <HStack className="gap-5 md:flex-row flex-col items-center">
+        <p className="text-sm text-muted">Total Items: {totalItems}</p>
         <div className="order-2 md:order-1">
           <Pagination
             page={page}

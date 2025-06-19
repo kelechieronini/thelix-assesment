@@ -16,13 +16,13 @@ const Pagination = ({
 
   return (
     <div className="flex items-center space-x-3">
-      {isLoading ? (
+      {/* {isLoading ? (
         <Spinner size={20} />
       ) : (
         <p className="text-muted font-light text-xs">
           {startItem} - {endItem} of {totalItems}
         </p>
-      )}
+      )} */}
 
       <div className="flex items-center">
         <Button
@@ -32,7 +32,7 @@ const Pagination = ({
           onClick={() => setPage(page - 1)}
           disabled={isLoading || page <= 1}
         >
-          <ChevronLeft size={19} />
+          <ChevronLeft size={25} />
         </Button>
         <Button
           variant="link"
@@ -41,7 +41,7 @@ const Pagination = ({
           onClick={() => setPage(page + 1)}
           disabled={isLoading || page >= totalPages}
         >
-          <ChevronRight size={19} />
+          <ChevronRight size={25} />
         </Button>
       </div>
     </div>
