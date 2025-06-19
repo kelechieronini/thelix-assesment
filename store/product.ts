@@ -8,7 +8,6 @@ interface ProductStore {
   setProducts: (products: Product[]) => void;
 }
 
-// Step 2: Create the store with proper typing
 export const useProductStore = create<ProductStore>((set) => ({
   products: [],
 

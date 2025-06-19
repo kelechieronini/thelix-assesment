@@ -1,4 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛍️ Product Dashboard App (Mini Admin Panel)
+
+A responsive and dynamic product dashboard built with **Next.js**, featuring product listing, filtering, search, pagination, and product creation.
+
+---
+
+## 🚀 Features
+
+- ✅ Responsive UI using **Tailwind CSS**
+- ✅ Product listing from **MockAPI**
+- ✅ Search & filter by category (`Shoes`, `Hats`, `Clothes`)
+- ✅ Client-side pagination
+- ✅ Create product modal with form validation
+- ✅ Image upload with preview
+- ✅ Inventory stats per category
+- ✅ Global state management with **Zustand**
+- ✅ Optimized data fetching with **React Query**
+
+---
+
+## 🛠️ Tech Stack
+
+| Category         | Tool                                             |
+| ---------------- | ------------------------------------------------ |
+| Framework        | [Next.js 14](https://nextjs.org/)                |
+| Styling          | [Tailwind CSS](https://tailwindcss.com/)         |
+| HTTP Client      | [Axios](https://axios-http.com/)                 |
+| State Management | [Zustand](https://github.com/pmndrs/zustand)     |
+| Data Fetching    | [React Query](https://tanstack.com/query/latest) |
+| Form Handling    | [React Hook Form](https://react-hook-form.com/)  |
+| Image Handling   | `FileReader` + `URL.createObjectURL`             |
+
+---
 
 ## Getting Started
 

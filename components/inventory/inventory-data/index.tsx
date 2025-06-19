@@ -30,10 +30,14 @@ const InventoryData = () => {
   useEffect(() => setPage(1), [category]);
 
   useEffect(() => {
-    if (data?.data) {
+    if (Array.isArray(data?.data)) {
       setProducts(data.data);
+    } else {
+      setProducts([]); // fallback to empty array
     }
   }, [data, setProducts]);
+
+  console.log(products);
 
   const loading = isLoading || isRefetching;
 
@@ -73,9 +77,9 @@ const InventoryData = () => {
             <h3 className="capitalize font-medium text-2xl text-center">
               No Products
             </h3>
-            <p className="text-muted font-light text-center">
-              You currently have no products. Add a <br /> product and manage
-              inventory
+            <p className="text-muted font-light text-center text-sm">
+              You currently have no product found. Add a <br /> product and
+              manage inventory
             </p>
           </div>
         )}

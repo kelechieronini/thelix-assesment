@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import React, { useState } from "react";
-import AddProductImage from "@/components/manager/add-product-image";
+import AddProductImage from "@/components/inventory/add-product-image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ProductImageFile } from "@/lib/types/product-image.type";
@@ -65,7 +65,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
       setSelectedFiles([]);
       toast({ title: "Product added." });
       queryClient.invalidateQueries({
-        queryKey: [QueryKeys.GET_PRODUCTS, page, category],
+        queryKey: [QueryKeys.GET_PRODUCTS],
       });
       onClose();
     },
@@ -99,12 +99,12 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent
           aria-describedby="reset-success"
-          className="md:max-w-[946px] md:max-h-[80vh] max-h-[90vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
+          className="md:max-w-[946px] md:max-h-[80vh] max-h-[95vh] max-w-[400px] flex flex-col gap-4 !rounded-2xl overflow-auto products-scrollbar"
         >
           <section className={"w-full"}>
             <Form {...form}>
               <form className="space-y-6 bg-white md:px-8 md:py-10">
-                <h4 className="text-muted text-sm">Add New Product</h4>
+                <h4 className="text-muted text-sm">Create New Product</h4>
 
                 <div className="flex items-start md:flex-row flex-col justify-stretch gap-9">
                   <VStack className="space-y-6 md:w-[60%] w-full order-2 md:order-1">
@@ -148,7 +148,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
                           </FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="e.g Reclaimed vintage loose men jean"
+                              placeholder="1000"
                               className="placeholder:text-muted placeholder:font-light rounded-none"
                               type="number"
                               {...field}

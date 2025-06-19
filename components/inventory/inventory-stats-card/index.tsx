@@ -1,12 +1,14 @@
 import { Badge } from "@/components/ui/badge";
+import Spinner from "@/components/ui/spinner";
 import { Footprints, GraduationCap, Shirt } from "lucide-react";
 
 type Props = {
   title: string;
   amount: Number;
+  isLoading: boolean;
 };
 
-const InventoryStatsCard = ({ title, amount }: Props) => {
+const InventoryStatsCard = ({ title, amount, isLoading }: Props) => {
   const statusInfo: Record<
     any,
     { className: string; icon: React.ReactElement }
@@ -31,11 +33,10 @@ const InventoryStatsCard = ({ title, amount }: Props) => {
         <Badge className={statusInfo[title.split(" ")[0]].className}>
           {statusInfo[title.split(" ")[0]].icon}
         </Badge>
-        <p className="text-muted text-[10px] capitalize">{title}</p>
+        <p className="text-muted md:text-sm text-xs capitalize">{title}</p>
       </div>
-
       <h2 className="text-black font-bold text-4xl">
-        {Number(amount).toLocaleString()}
+        {!isLoading ? Number(amount).toLocaleString() : <Spinner size={35} />}
       </h2>
     </div>
   );

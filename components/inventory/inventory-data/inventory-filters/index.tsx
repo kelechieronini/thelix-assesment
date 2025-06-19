@@ -10,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Pagination from "@/components/manager/pagination";
+import Pagination from "@/components/core/pagination";
 import { FilterProps } from "@/lib/types/pagination.type";
 import { useDisclosure } from "@/lib/hooks/use-disclosure";
-import AddInventory from "@/components/manager/dialogs/add-inventory";
+import AddInventory from "@/components/inventory/dialogs/add-inventory";
 
 const InventoryFilters = ({
   page,
@@ -107,7 +107,7 @@ const InventoryFilters = ({
           className="bg-inherit border border-[#1D41E0] text-[#1D41E0] hover:bg-[#1D41E0] hover:text-white order-1 md:order-2"
           onClick={onOpen}
         >
-          Add Product
+          Create Product
         </Button>
       </HStack>
 
