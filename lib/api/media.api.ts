@@ -1,6 +1,8 @@
 import axios from "axios";
 import { ImageUpload } from "../types/upload.type";
 
+//api endpoint and configuration setup for cloudinary image upload
+
 const baseURL = `https://api.cloudinary.com/v1_1/kelechieronini/image`;
 
 const headers = {

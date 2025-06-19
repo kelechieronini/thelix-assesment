@@ -15,7 +15,6 @@ type Props = {
 };
 
 const HamburgerMenu = ({ isOpen, onClose }: Props) => {
-  const { push } = useRouter();
   const pathname = usePathname();
   const { replace } = useRouter();
 

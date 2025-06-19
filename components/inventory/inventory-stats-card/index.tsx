@@ -9,6 +9,7 @@ type Props = {
 };
 
 const InventoryStatsCard = ({ title, amount, isLoading }: Props) => {
+  // Defining the status information for each category
   const statusInfo: Record<
     any,
     { className: string; icon: React.ReactElement }

@@ -28,15 +28,18 @@ const InventoryFilters = ({
   category,
   setCategory,
 }: FilterProps) => {
+  // Function to handle form submission
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     page === 1 ? refetch && refetch() : setPage(1);
   }
 
+  // Function to handle input change
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setSearchText && setSearchText(e.target.value);
   }
 
+  // Using useDisclosure hook to manage modal state
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
