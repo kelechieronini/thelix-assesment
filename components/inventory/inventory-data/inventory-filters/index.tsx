@@ -14,6 +14,7 @@ import Pagination from "@/components/core/pagination";
 import { FilterProps } from "@/lib/types/pagination.type";
 import { useDisclosure } from "@/lib/hooks/use-disclosure";
 import AddInventory from "@/components/inventory/dialogs/add-inventory";
+import { useProductStore } from "@/store/product";
 
 const InventoryFilters = ({
   page,
@@ -28,6 +29,8 @@ const InventoryFilters = ({
   category,
   setCategory,
 }: FilterProps) => {
+  const products = useProductStore((state) => state.products);
+
   // Function to handle form submission
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
@@ -95,9 +98,9 @@ const InventoryFilters = ({
         </HStack>
       </HStack>
 
-      <HStack className="gap-5 md:flex-row flex-col items-center">
-        <p className="text-sm text-muted">Total Items: {totalItems}</p>
-        <div className="order-2 md:order-1">
+      <HStack className="gap-5 md:flex-row flex-col items-center w-full">
+        {/* <p className="text-sm text-muted">Total Items: {products.length}</p> */}
+        <div className="order-2 md:order-1 w-full">
           <Pagination
             page={page}
             setPage={setPage}
