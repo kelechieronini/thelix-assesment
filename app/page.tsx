@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="bg-[#02071d] h-screen flex flex-col items-center justify-center gap-8">
       <p className="text-white md:text-6xl text-4xl text-center font-bold">
-        THELIX ASSESMENT
+        THELIX ASSESSMENT
       </p>
 
       <Link href="/dashboard/inventory" passHref>
