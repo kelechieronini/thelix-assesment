@@ -24,6 +24,7 @@ A responsive and dynamic product dashboard built with **Next.js**, featuring pro
 | ---------------- | ------------------------------------------------ |
 | Framework        | [Next.js 14](https://nextjs.org/)                |
 | Styling          | [Tailwind CSS](https://tailwindcss.com/)         |
+| UI Library       | [Shadcn](https://ui.shadcn.com/)                 |
 | HTTP Client      | [Axios](https://axios-http.com/)                 |
 | State Management | [Zustand](https://github.com/pmndrs/zustand)     |
 | Data Fetching    | [React Query](https://tanstack.com/query/latest) |
