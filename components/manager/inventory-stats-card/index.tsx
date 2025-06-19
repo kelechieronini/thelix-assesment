@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Archive, Layers, Wifi } from "lucide-react";
+import { Footprints, GraduationCap, Shirt } from "lucide-react";
 
 type Props = {
   title: string;
@@ -11,17 +11,17 @@ const InventoryStatsCard = ({ title, amount }: Props) => {
     any,
     { className: string; icon: React.ReactElement }
   > = {
-    total: {
-      className: "bg-[#ECF1FF] text-[#1D41E0]",
-      icon: <Layers size={16} />,
+    Shoes: {
+      className: "bg-indigo-100 text-indigo-700 rounded-md",
+      icon: <Footprints size={16} />,
     },
-    active: {
-      className: "bg-[#D9FFE1] text-[#019445]",
-      icon: <Wifi size={16} style={{ transform: "rotate(45deg)" }} />,
+    Clothes: {
+      className: "bg-emerald-100 text-emerald-700 rounded-md",
+      icon: <Shirt size={16} />,
     },
-    drafts: {
-      className: "bg-[#F6F6F6] text-muted",
-      icon: <Archive size={16} />,
+    Hats: {
+      className: "bg-amber-100 text-amber-700 rounded-md",
+      icon: <GraduationCap size={16} />,
     },
   };
 

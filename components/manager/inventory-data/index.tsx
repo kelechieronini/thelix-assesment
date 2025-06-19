@@ -10,7 +10,7 @@ import { _getProducts } from "@/lib/api/product.api";
 import { useProductStore } from "@/store/product";
 
 const InventoryData = () => {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("All");
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("");
 
@@ -21,7 +21,7 @@ const InventoryData = () => {
     queryKey: [QueryKeys.GET_PRODUCTS, page, category, searchText],
     queryFn: () =>
       _getProducts(page, 10, {
-        category: category === "" ? "" : category,
+        category: category === "All" ? "" : category,
         name: searchText,
       }),
     enabled: !!page,

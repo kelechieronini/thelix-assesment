@@ -53,20 +53,21 @@ const AddProductImage = ({ selectedFiles, setSelectedFiles }: Props) => {
     setSelectedFiles(newFiles);
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    const newFiles: ProductImageFile[] = files.map((file) => ({
+    const newFile: ProductImageFile = {
       file,
       url: URL.createObjectURL(file),
-    }));
+    };
 
-    setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
+    setSelectedFiles([newFile]);
   };
 
   return (
     <div
-      className="border border-muted md:w-[40%] flex flex-col justify-between p-5 rounded-md md:h-[50vh]"
+      className="border border-muted md:w-[40%] w-full flex flex-col justify-between p-5 rounded-md md:h-[50vh]"
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -116,7 +117,6 @@ const AddProductImage = ({ selectedFiles, setSelectedFiles }: Props) => {
             <Input
               type="file"
               accept="image/*"
-              multiple
               className="hidden"
               ref={fileInput}
               onChange={handleFileChange}
