@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import React, { useState } from "react";
-import AddProductImage from "@/components/manager/add-product-image";
+import AddProductImage from "@/components/inventory/add-product-image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ProductImageFile } from "@/lib/types/product-image.type";

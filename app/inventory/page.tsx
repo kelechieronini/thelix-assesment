@@ -1,5 +1,5 @@
-import InventoryStats from "@/components/manager/inventory-stats";
-import InventoryData from "@/components/manager/inventory-data";
+import InventoryStats from "@/components/inventory/inventory-stats";
+import InventoryData from "@/components/inventory/inventory-data";
 import React from "react";
 
 const Inventory = () => {

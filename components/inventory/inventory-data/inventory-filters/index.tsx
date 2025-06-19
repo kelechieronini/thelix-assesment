@@ -13,7 +13,7 @@ import {
 import Pagination from "@/components/core/pagination";
 import { FilterProps } from "@/lib/types/pagination.type";
 import { useDisclosure } from "@/lib/hooks/use-disclosure";
-import AddInventory from "@/components/manager/dialogs/add-inventory";
+import AddInventory from "@/components/inventory/dialogs/add-inventory";
 
 const InventoryFilters = ({
   page,

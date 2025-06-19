@@ -1,5 +1,5 @@
 "use client";
-import InventoryStatsCard from "@/components/manager/inventory-stats-card";
+import InventoryStatsCard from "@/components/inventory/inventory-stats-card";
 import { useQuery } from "@tanstack/react-query";
 import { _getProducts } from "@/lib/api/product.api";
 import React from "react";
