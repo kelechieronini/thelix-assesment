@@ -40,47 +40,53 @@ const InventoryData = () => {
   const loading = isLoading || isRefetching;
 
   return (
-    <div className="w-full bg-white p-6 flex flex-col space-y-9 rounded-md">
-      <InventoryFilters
-        page={page}
-        setPage={setPage}
-        itemsPerPage={4}
-        totalItems={products.length}
-        totalPages={5}
-        isLoading={loading}
-        searchText={searchText}
-        setSearchText={setSearchText}
-        refetch={refetch}
-        category={category}
-        setCategory={setCategory}
-      />
+    <div className="w-full bg-white p-6 flex flex-col space-y-4 rounded-md">
+      <h2 className="text-muted font-bold text-[10px]">
+        NB: Max. total Items per page: 6
+      </h2>
+      <div className="flex flex-col space-y-9">
+        <InventoryFilters
+          page={page}
+          setPage={setPage}
+          itemsPerPage={6}
+          totalItems={products.length}
+          totalPages={3}
+          isLoading={loading}
+          searchText={searchText}
+          setSearchText={setSearchText}
+          refetch={refetch}
+          category={category}
+          setCategory={setCategory}
+        />
 
-      <div className="flex flex-col w-full">
-        {loading && (
-          <div className="py-10 flex justify-center">
-            <Spinner size={35} />
-          </div>
-        )}
+        <div className="flex flex-col w-full">
+          {loading && (
+            <div className="py-10 flex justify-center">
+              <Spinner size={35} />
+            </div>
+          )}
 
-        {!loading && products.length > 0 && (
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
+          {!loading && products.length > 0 && (
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-6">
+              {/* Reverse the products array to display the latest products first because the mock api is not handling it well*/}
+              {[...products].reverse().map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
 
-        {!loading && products.length === 0 && (
-          <div className="py-20 flex flex-col space-y-2 items-center justify-center">
-            <h3 className="capitalize font-medium text-2xl text-center">
-              No Products
-            </h3>
-            <p className="text-muted font-light text-center md:text-sm text-xs">
-              You currently have no product found. Add a <br /> product and
-              manage inventory
-            </p>
-          </div>
-        )}
+          {!loading && products.length === 0 && (
+            <div className="py-20 flex flex-col space-y-2 items-center justify-center">
+              <h3 className="capitalize font-medium text-2xl text-center">
+                No Products
+              </h3>
+              <p className="text-muted font-light text-center md:text-sm text-xs">
+                You currently have no product found. Add a <br /> product and
+                manage inventory
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const Pagination = ({
   const endItem = Math.min(page * itemsPerPage, totalItems);
 
   return (
-    <div className="flex items-center space-x-3">
+    <div className="flex items-center gap-3 w-full">
       {/* {isLoading ? (
         <Spinner size={20} />
       ) : (
@@ -24,24 +24,30 @@ const Pagination = ({
         </p>
       )} */}
 
-      <div className="flex items-center">
+      <div className="flex items-center justify-center w-full gap-7">
         <Button
           variant="link"
           size="icon"
-          className="bg-none px-0 mx-0"
+          className="bg-none px-0 mx-0 w-fit"
           onClick={() => setPage(page - 1)}
           disabled={isLoading || page <= 1}
         >
-          <ChevronLeft size={25} />
+          <div className="flex items-center">
+            <ChevronLeft size={25} />
+            <p>Previous</p>
+          </div>
         </Button>
         <Button
           variant="link"
           size="icon"
-          className="bg-none px-0 mx-0"
+          className="bg-none px-0 mx-0 w-fit"
           onClick={() => setPage(page + 1)}
           disabled={isLoading || page >= totalPages}
         >
-          <ChevronRight size={25} />
+          <div className="flex items-center">
+            <p>Next</p>
+            <ChevronRight size={25} />
+          </div>{" "}
         </Button>
       </div>
     </div>

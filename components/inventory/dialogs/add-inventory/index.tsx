@@ -48,6 +48,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  //Form hook
   const form = useForm<AddProductSchema>({
     resolver: classValidatorResolver(AddProductSchema),
     defaultValues: {
@@ -58,6 +59,7 @@ const AddInventory = ({ isOpen, onClose, category, page }: Props) => {
     },
   });
 
+  //Create product api fxn
   const { mutate, isPending } = useMutation({
     mutationFn: _addProduct,
     onSuccess: () => {

@@ -9,6 +9,8 @@ import HamburgerMenu from "../hamburger-menu";
 
 const Topbar = () => {
   const pathname = usePathname();
+
+  // Function to compute the pathname based on the current path
   const computePathname = useCallback(() => {
     if (pathname.includes("/inventory")) {
       return "Inventory";
@@ -35,8 +37,6 @@ const Topbar = () => {
         <Button size={"icon"} variant={"ghost"}>
           <Bell />
         </Button>
-
-        {/* {isLoading && <Spinner />} */}
 
         <HStack className={"items-center space-x-3"}>
           <div className={"p-2 border rounded-lg"}>
