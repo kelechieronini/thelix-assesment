@@ -5,18 +5,17 @@ import { ProductQuery } from "../types/query.type";
 import { api } from "./api.config";
 import { _uploadImage } from "./media.api";
 
+//get all products api
 export const _getProducts = async (
   page: number,
   limit?: number,
   query?: ProductQuery
 ) =>
   await api.get<Product[]>(
-    `/products?name=${query?.name ?? ""}${query?.category ? `&category=${query?.category}` : ""}&page=${page}&limit=${limit ?? 10}`
+    `/products?name=${query?.name ?? ""}${query?.category ? `&category=${query?.category}` : ""}&page=${page}&limit=${limit ?? 10}&order=desc`
   );
 
-export const _getProduct = async (id: string) =>
-  await api.get<Product>(`/product/${id}`);
-
+//add product api
 export const _addProduct = async (payload: {
   data: AddProductSchema;
   selectedFiles: ProductImageFile[];
@@ -34,6 +33,3 @@ export const _addProduct = async (payload: {
     image: images[0],
   });
 };
-
-export const _deleteProduct = async (productID: string) =>
-  await api.delete(`/product/${productID}`);

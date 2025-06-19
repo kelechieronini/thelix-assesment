@@ -1,12 +1,37 @@
+"use client";
 import InventoryStatsCard from "@/components/manager/inventory-stats-card";
+import { useQuery } from "@tanstack/react-query";
+import { _getProducts } from "@/lib/api/product.api";
 import React from "react";
 
 const InventoryStats = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["product-stats"],
+    queryFn: () => _getProducts(1, 1000, {}),
+  });
+
+  const allProducts = data?.data || [];
+
+  const getCountByCategory = (category: string) =>
+    allProducts.filter((product) => product.category === category).length;
+
   return (
     <div className="w-full grid md:grid-cols-3 md:gap-x-6  grid-cols-1 gap-y-4">
-      <InventoryStatsCard title="Clothes" amount={1659} />
-      <InventoryStatsCard title="Shoes" amount={120} />
-      <InventoryStatsCard title="Hats" amount={56} />
+      <InventoryStatsCard
+        title="Clothes"
+        amount={getCountByCategory("Clothes")}
+        isLoading={isLoading}
+      />
+      <InventoryStatsCard
+        title="Shoes"
+        amount={getCountByCategory("Shoes")}
+        isLoading={isLoading}
+      />
+      <InventoryStatsCard
+        title="Hats"
+        amount={getCountByCategory("Hats")}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
